@@ -1,1 +1,2 @@
 # Autorijschool
+De rijschool gaat over een maand starten en wil haar dienstverlening via het webportaal realiseren. De dienstverlening heeft betrekking op het zichtbaar zijn voor bezoekers, service bieden aan leerlingen en de instructeurs voorzien van de juiste informatie over de leerlingen. Er zijn vier instructeurs in dienst en er is een wagenpark van drie auto’s, waarvan twee elektrische auto’s. Er is één eigenaar. Vooral jongeren met een fysieke beperking vormen de doelgroep.
