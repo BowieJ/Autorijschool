@@ -1,0 +1,27 @@
+.title {
+  color: white;
+  background-color: #4e9cef;
+  padding: 15px;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #4e9cef;
+  overflow: hidden;
+}
+
+/* Stijl voor de items in de navigatiebalk */
+.navbar a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Stijl voor het actieve item */
+.navbar a.active {
+  background-color: #7FBDFF;
+  color: white;
+}

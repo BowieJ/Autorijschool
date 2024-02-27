@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7428fb1-76a0-4d1b-9e83-5c9027ab2cd5" name="Changes" comment="" />
+    <list default="true" id="a7428fb1-76a0-4d1b-9e83-5c9027ab2cd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Autorijschool/src/assets/voertuigen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/profile/profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/app/registration/registration.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Autorijschool/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Autorijschool/src/styles.scss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,28 +38,29 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2c8gGGkXbnX2k4ZA3ICjJKfeLsA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Computer/WebstormProjects/Autorijschool",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Computer/WebstormProjects/Autorijschool&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Computer\\WebstormProjects\\Autorijschool\\Autorijschool\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,7 +69,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707498521896</updated>
-      <workItem from="1707498522900" duration="1244000" />
+      <workItem from="1707498522900" duration="10140000" />
+      <workItem from="1707748175431" duration="12691000" />
+      <workItem from="1707792318905" duration="9122000" />
+      <workItem from="1707928739938" duration="73000" />
     </task>
     <servers />
   </component>

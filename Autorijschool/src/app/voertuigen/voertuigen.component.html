@@ -1,0 +1,14 @@
+<div class="background">
+  <section class="results">
+    <div class="container">
+      <ul class="voertuig">
+        <li *ngFor="let voertuig of voertuigen;">
+          <h3 class="voertuig-title">{{ voertuig.merk }}</h3>
+          <p class="voertuig-text">{{ voertuig.type }}</p>
+          <p class="voertuig-text">{{ voertuig.kenteken }}</p>
+          <p class="voertuig-text">{{ voertuig.photo }}</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>

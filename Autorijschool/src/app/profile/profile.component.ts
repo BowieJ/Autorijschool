@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule} from "@angular/common";
+import { Profile } from "../profile";
 
 @Component({
   selector: 'app-profile',
@@ -8,5 +10,6 @@ import { Component } from '@angular/core';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+  @Input() profile!: Profile;
 
 }

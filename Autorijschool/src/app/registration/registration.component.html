@@ -1,1 +1,26 @@
-<p>registration works!</p>
+<div class="background">
+  <form (ngSubmit)="register()">
+    <label for="name">Naam:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="userData.name" required>
+
+    <label for="adress">Adres:</label>
+    <input type="text" id="adress" name="adress" [(ngModel)]="userData.adress" required>
+
+    <label for="phone">Telefoon:</label>
+    <input type="text" id="phone" name="phone" [(ngModel)]="userData.phone" required>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" [(ngModel)]="userData.email" required>
+
+    <label for="password">Wachtwoord:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="userData.password" required>
+
+    <label for="confirmPassword">Bevestig Wachtwoord:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="userData.confirmPassword" required>
+
+    <input type="submit" value="Registreren">
+    <p>Al een account? Log in <a onclick="window.location.href='registreren.html'">hier</a></p>
+  </form>
+</div>
+
+
