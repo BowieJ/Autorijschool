@@ -3,6 +3,8 @@ import {NavigationComponent} from "../navigation/navigation.component";
 import {CommonModule} from "@angular/common";
 import {VoertuigenComponent} from "../voertuigen/voertuigen.component";
 import {RouterModule} from '@angular/router';
+import {Voertuigen} from "../voertuigen";
+import {VoertuigService} from "../voertuigen.service";
 
 @Component({
     selector: 'app-home',
@@ -12,5 +14,16 @@ import {RouterModule} from '@angular/router';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  naam: string;
+  contactgegevens: string;
+  datumTijd: Date;
+  gekozenVoertuig: number;
+  beschikbareVoertuigen: Voertuigen[];
 
+  constructor(private voertuigService: VoertuigService) {
+    this.beschikbareVoertuigen = this.voertuigService.getVoertuigen();
+  }
+
+  maakAfspraak(): void {
+  }
 }

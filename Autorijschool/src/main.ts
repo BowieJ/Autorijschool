@@ -11,6 +11,11 @@ bootstrapApplication(AppComponent, appConfig)
 
 const routes: Routes = [
     {
+        path: '',
+        title: 'Vierkante Wielen - Home',
+        component: HomeComponent
+    },
+    {
         path: 'home',
         title: 'Vierkante Wielen - Home',
         component: HomeComponent

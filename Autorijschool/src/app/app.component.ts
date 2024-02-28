@@ -6,11 +6,12 @@ import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {NavigationComponent} from "./navigation/navigation.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterModule, HttpClientModule, ProfileComponent, HomeComponent, LoginComponent, RegistrationComponent, NavigationComponent],
+    imports: [RouterModule, HttpClientModule, ProfileComponent, HomeComponent, LoginComponent, RegistrationComponent, NavigationComponent, FormsModule],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

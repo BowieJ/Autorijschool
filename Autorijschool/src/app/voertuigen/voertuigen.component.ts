@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {VOERTUIG} from "../voertuigen";
+import {VOERTUIG, Voertuigen} from "../voertuigen";
 import {NgForOf} from "@angular/common";
 import {RouterModule} from '@angular/router';
+import {VoertuigService} from "../voertuigen.service";
 
 @Component({
     selector: 'app-voertuigen',
@@ -14,6 +15,12 @@ import {RouterModule} from '@angular/router';
     styleUrls: ['./voertuigen.component.scss']
 })
 export class VoertuigenComponent {
-    voertuigen = VOERTUIG;
+  voertuigen: Voertuigen[];
+
+  constructor(private voertuigService: VoertuigService) { }
+
+  ngOnInit(): void {
+    this.voertuigen = this.voertuigService.getVoertuigen();
+  }
 }
 

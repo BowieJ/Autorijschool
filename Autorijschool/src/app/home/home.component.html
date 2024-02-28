@@ -1,4 +1,11 @@
 <div class="background">
-  <section>
-  </section>
+  <form (submit)="maakAfspraak()">
+    <input type="text" placeholder="Naam" [(ngModel)]="naam" required>
+    <input type="text" placeholder="Contactgegevens" [(ngModel)]="contactgegevens" required>
+    <input type="datetime-local" placeholder="Datum en tijd" [(ngModel)]="datumTijd" required>
+    <select [(ngModel)]="gekozenVoertuig">
+      <option *ngFor="let voertuig of beschikbareVoertuigen" [value]="voertuig.id">{{ voertuig.merk }} - {{ voertuig.type }}</option>
+    </select>
+    <button type="submit">Afspraak maken</button>
+  </form>
 </div>
