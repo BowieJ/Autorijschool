@@ -27,7 +27,7 @@ const routes: Routes = [
     },
     {
         path: '**',
-        title: 'Vierkante Wielen - 404',
+        title: 'Vierkante Wielen - Not Found',
         component: NotfoundComponent
     },
 ];

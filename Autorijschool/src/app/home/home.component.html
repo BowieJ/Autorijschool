@@ -1,11 +1,20 @@
 <div class="background">
   <form (submit)="maakAfspraak()">
-    <input type="text" placeholder="Naam" [(ngModel)]="naam" required>
-    <input type="text" placeholder="Contactgegevens" [(ngModel)]="contactgegevens" required>
-    <input type="datetime-local" placeholder="Datum en tijd" [(ngModel)]="datumTijd" required>
-    <select [(ngModel)]="gekozenVoertuig">
-      <option *ngFor="let voertuig of beschikbareVoertuigen" [value]="voertuig.id">{{ voertuig.merk }} - {{ voertuig.type }}</option>
+    <input type="text" placeholder="Naam" [(ngModel)]="naam" name="naam" required>
+    <input type="text" placeholder="Telefoon" [(ngModel)]="telefoon" name="telefoon" required>
+    <input type="datetime-local"  placeholder="Datum en tijd" [(ngModel)]="datumTijd" name="datumTijd" id="datumTijd" required>
+    <select [(ngModel)]="gekozenVoertuig" name="gekozenVoertuig">
+      <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.type }} - {{ voertuig.kenteken }}</option>
     </select>
     <button type="submit">Afspraak maken</button>
   </form>
+  <ul>
+    <li *ngFor="let afspraak of gemaakteAfspraken; index as i">
+      Naam: {{ afspraak.naam }}<br>
+      Telefoon: {{ afspraak.telefoon }}<br>
+      Datum/tijd: {{ afspraak.datumTijd | date }}<br>
+      Voertuig: {{ afspraak.voertuig}}<br>
+      <button style="background-color: #a72828" (click)="verwijderAfspraak(i)">Verwijder</button>
+    </li>
+  </ul>
 </div>

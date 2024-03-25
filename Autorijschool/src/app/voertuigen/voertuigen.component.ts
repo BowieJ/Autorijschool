@@ -15,7 +15,7 @@ import {VoertuigService} from "../voertuigen.service";
     styleUrls: ['./voertuigen.component.scss']
 })
 export class VoertuigenComponent {
-  voertuigen: Voertuigen[];
+  voertuigen!: Voertuigen[];
 
   constructor(private voertuigService: VoertuigService) { }
 
