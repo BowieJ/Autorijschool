@@ -22,3 +22,31 @@ button {
   padding: 20px;
   cursor: pointer;
 }
+
+.background {
+  background-color: #e0f7fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.afspraak-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.afspraak-label {
+  font-weight: bold;
+  width: 100px; /* Adjust the width as needed */
+}
+
+.afspraak-value {
+  margin-left: 8px;
+}

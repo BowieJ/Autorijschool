@@ -1,8 +1,10 @@
 .background {
   background-color: rgba(179, 215, 255, 0.5);
+  padding: 20px;
+  border-radius: 8px;
 }
 
-.input{
+.input {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
@@ -11,8 +13,8 @@
   box-sizing: border-box;
 }
 
-.afspraak{
-  width: 30%;
+.afspraak {
+  width: 32%;
   background-color: #F9F9F9;
   padding: 20px;
   border: 1px solid #ccc;
@@ -80,8 +82,23 @@ button:hover {
   background-color: #0056b3;
 }
 
-ul{
+ul {
   list-style: none;
+}
+
+.afspraak-item {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.afspraak-label {
+  font-weight: bold;
+  width: 100px; /* Adjust the width as needed */
+}
+
+.afspraak-value {
+  margin-left: 8px;
 }
 
 @media (min-width: 500px) and (max-width: 768px) {

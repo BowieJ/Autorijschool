@@ -13,10 +13,22 @@
   </form>
   <ul>
     <li class="afspraak" *ngFor="let afspraak of gemaakteAfspraken; index as i">
-      <p>Naam: {{ afspraak.naam }}</p><br>
-      <p>Telefoon: {{ afspraak.telefoon }}</p><br>
-      <p>Datum/tijd: {{ afspraak.datumTijd | date:'dd/MM/yy, HH:mm' }}</p><br>
-      <p>Voertuig: {{ afspraak.voertuig.merk }} - {{ afspraak.voertuig.soort }} - {{ afspraak.voertuig.kenteken }}</p><br>
+      <div class="afspraak-item">
+        <div class="afspraak-label"><b>Naam:</b></div>
+        <div class="afspraak-value">{{ afspraak.naam }}</div>
+      </div>
+      <div class="afspraak-item">
+        <div class="afspraak-label">Telefoon:</div>
+        <div class="afspraak-value">{{ afspraak.telefoon }}</div>
+      </div>
+      <div class="afspraak-item">
+        <div class="afspraak-label">Datum/tijd:</div>
+        <div class="afspraak-value">{{ afspraak.datumTijd | date:'dd/MM/yy, HH:mm' }}</div>
+      </div>
+      <div class="afspraak-item">
+        <div class="afspraak-label">Voertuig:</div>
+        <div class="afspraak-value">{{ afspraak.voertuig.soort }} - {{ afspraak.voertuig.kenteken }}</div>
+      </div>
       <button style="background-color: #ff4b4b" (click)="verwijderAfspraak(i)">Verwijder</button>
     </li>
   </ul>
