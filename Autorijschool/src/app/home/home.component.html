@@ -1,20 +1,23 @@
 <div class="background">
-  <form (submit)="maakAfspraak()">
+  <form (submit)="maakAfspraak($event)">
     <input type="text" placeholder="Naam" [(ngModel)]="naam" name="naam" required>
     <input type="text" placeholder="Telefoon" [(ngModel)]="telefoon" name="telefoon" required>
-    <input type="datetime-local"  placeholder="Datum en tijd" [(ngModel)]="datumTijd" name="datumTijd" id="datumTijd" required>
-    <select [(ngModel)]="gekozenVoertuig" name="gekozenVoertuig">
-      <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.type }} - {{ voertuig.kenteken }}</option>
+    <input class="input" type="date" placeholder="Datum" [(ngModel)]="datum" name="datum" id="datum" required (change)="updateBeschikbareTijden()">
+    <select class="input" [(ngModel)]="tijd" name="tijd" id="tijd" required>
+      <option *ngFor="let tijd of beschikbareTijden" [value]="tijd">{{ tijd }}</option>
+    </select>
+    <select class="input" [(ngModel)]="gekozenVoertuig" name="gekozenVoertuig" required>
+      <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.soort }} - {{ voertuig.kenteken }}</option>
     </select>
     <button type="submit">Afspraak maken</button>
   </form>
   <ul>
-    <li *ngFor="let afspraak of gemaakteAfspraken; index as i">
-      Naam: {{ afspraak.naam }}<br>
-      Telefoon: {{ afspraak.telefoon }}<br>
-      Datum/tijd: {{ afspraak.datumTijd | date }}<br>
-      Voertuig: {{ afspraak.voertuig}}<br>
-      <button style="background-color: #a72828" (click)="verwijderAfspraak(i)">Verwijder</button>
+    <li class="afspraak" *ngFor="let afspraak of gemaakteAfspraken; index as i">
+      <p>Naam: {{ afspraak.naam }}</p><br>
+      <p>Telefoon: {{ afspraak.telefoon }}</p><br>
+      <p>Datum/tijd: {{ afspraak.datumTijd | date:'dd/MM/yy, HH:mm' }}</p><br>
+      <p>Voertuig: {{ afspraak.voertuig.merk }} - {{ afspraak.voertuig.soort }} - {{ afspraak.voertuig.kenteken }}</p><br>
+      <button style="background-color: #ff4b4b" (click)="verwijderAfspraak(i)">Verwijder</button>
     </li>
   </ul>
 </div>

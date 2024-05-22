@@ -1,5 +1,23 @@
 .background {
-  background-color: rgba(0, 123, 255, 0.5);
+  background-color: rgba(179, 215, 255, 0.5);
+}
+
+.input{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.afspraak{
+  width: 30%;
+  background-color: #F9F9F9;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
 }
 
 form {
@@ -60,6 +78,10 @@ button {
 input[type="submit"]:hover,
 button:hover {
   background-color: #0056b3;
+}
+
+ul{
+  list-style: none;
 }
 
 @media (min-width: 500px) and (max-width: 768px) {
