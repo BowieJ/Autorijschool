@@ -1,52 +1,110 @@
 .background {
   background-color: rgba(179, 215, 255, 0.5);
-}
-
-.voertuig {
-  width: 80%;
-}
-
-.voertuig li {
-  margin-bottom: 20px;
-  list-style: none;
-  padding: 0;
-  background-color: #ffffff;
-  border-radius: 15px;
-  text-align: left;
-}
-
-button {
-  width: 100%;
-  border: none;
-  background: none;
   padding: 20px;
-  cursor: pointer;
-}
-
-.background {
-  background-color: #e0f7fa;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-form {
-  margin-bottom: 20px;
 }
 
 .input {
-  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
 }
 
-.afspraak-item {
+form {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+button {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.voertuigen-lijst {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Distribute items with space between */
+  width: 100%;
+  gap: 20px; /* Add gap between items */
+  padding: 0!important;
+}
+
+.voertuig-item {
+  background-color: #F9F9F9;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  flex: 0 1 30%; /* Fixed width for better alignment */
+}
+
+.voertuig-foto {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.voertuig-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.afspraak-item,
+.voertuig-detail {
   display: flex;
   margin-bottom: 8px;
 }
 
-.afspraak-label {
+.afspraak-label,
+.voertuig-label {
   font-weight: bold;
-  width: 100px; /* Adjust the width as needed */
+  width: 100px;
 }
 
-.afspraak-value {
+.afspraak-value,
+.voertuig-value {
   margin-left: 8px;
+}
+
+.add-voertuig-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: lightgreen;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .voertuig-item {
+    flex: 0 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 500px) {
+  .voertuig-item {
+    flex: 0 1 calc(100% - 20px);
+  }
 }

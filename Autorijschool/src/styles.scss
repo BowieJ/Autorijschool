@@ -50,12 +50,11 @@ a {
 }
 
 .results {
-  display: grid;
-  column-gap: 14px;
-  row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the items */
   padding: 20px;
-  justify-content: space-around;
+  gap: 20px; /* Add gap between items */
 }
 
 input[type="text"],
@@ -91,7 +90,7 @@ button:hover {
 
 @media (min-width: 500px) and (max-width: 768px) {
   .results {
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-around; /* Ensure correct spacing for smaller screens */
   }
   input[type="text"] {
     width: 70%;
@@ -100,6 +99,6 @@ button:hover {
 
 @media (max-width: 499px) {
   .results {
-    grid-template-columns: 1fr;
+    justify-content: center; /* Center items for smallest screens */
   }
 }

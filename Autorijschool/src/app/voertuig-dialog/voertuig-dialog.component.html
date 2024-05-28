@@ -1,0 +1,29 @@
+<h2>{{ voertuig.id ? 'Voertuig Bewerken' : 'Nieuw Voertuig' }}</h2>
+<form (ngSubmit)="voertuigOpslaan()">
+  <ng-container *ngIf="voertuig.id === 0">
+    <div class="input">
+      <label for="merk">Merk:</label>
+      <input type="text" id="merk" [(ngModel)]="voertuig.merk" name="merk" required>
+    </div>
+    <div class="input">
+      <label for="soort">Soort:</label>
+      <input type="text" id="soort" [(ngModel)]="voertuig.soort" name="soort" required>
+    </div>
+    <div class="input">
+      <label for="kenteken">Kenteken:</label>
+      <input type="text" id="kenteken" [(ngModel)]="voertuig.kenteken" name="kenteken" required>
+    </div>
+    <div class="input">
+      <label for="foto">Foto:</label>
+      <input type="file" id="foto" (change)="onFileSelected($event)" required>
+    </div>
+  </ng-container>
+  <div class="input">
+    <label for="status">Status:</label>
+    <select id="status" [(ngModel)]="voertuig.status" name="status" required>
+      <option value="Beschikbaar">Beschikbaar</option>
+      <option value="Onderhoud">Onderhoud</option>
+    </select>
+  </div>
+  <button type="submit">{{ voertuig.id ? 'Bijwerken' : 'Opslaan' }}</button>
+</form>

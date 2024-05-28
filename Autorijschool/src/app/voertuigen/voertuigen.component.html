@@ -1,13 +1,32 @@
 <div class="background">
-  <section class="results">
     <div class="container">
-      <ul class="voertuig">
-        <li *ngFor="let voertuig of voertuigen;">
-          <h3 class="voertuig-title">{{ voertuig.merk }}</h3>
-          <p class="voertuig-text">{{ voertuig.soort }}</p>
-          <p class="voertuig-text">{{ voertuig.kenteken }}</p>
+      <button mat-fab color="primary" class="add-voertuig-button" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <ul id="voertuigen-lijst" class="voertuigen-lijst">
+        <li *ngFor="let voertuig of voertuigen;" class="voertuig-item">
+          <img [src]="voertuig.fotoUrl" alt="Foto van {{ voertuig.merk }}" class="voertuig-foto">
+          <div class="voertuig-info">
+            <div class="voertuig-detail">
+              <div class="voertuig-label">Merk:</div>
+              <div class="voertuig-value">{{ voertuig.merk }}</div>
+            </div>
+            <div class="voertuig-detail">
+              <div class="voertuig-label">Soort:</div>
+              <div class="voertuig-value">{{ voertuig.soort }}</div>
+            </div>
+            <div class="voertuig-detail">
+              <div class="voertuig-label">Kenteken:</div>
+              <div class="voertuig-value">{{ voertuig.kenteken }}</div>
+            </div>
+            <div class="voertuig-detail">
+              <div class="voertuig-label">Status:</div>
+              <div class="voertuig-value">{{ voertuig.status }}</div>
+            </div>
+            <button mat-button (click)="openDialog(voertuig)">Bewerken</button>
+            <button mat-button (click)="voertuigVerwijderen(voertuig.id)">Verwijderen</button>
+          </div>
         </li>
       </ul>
     </div>
-  </section>
 </div>
