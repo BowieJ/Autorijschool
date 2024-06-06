@@ -1,5 +1,7 @@
 .background {
   background-color: rgba(179, 215, 255, 0.5);
+  padding: 20px;
+  position: relative;
 }
 
 .input {
@@ -11,18 +13,22 @@
   box-sizing: border-box;
 }
 
-.afspraak {
-  width: 32%;
+.afspraak-item {
   background-color: #F9F9F9;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 15px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex: 0 1 30%; /* Fixed width for better alignment */
 }
 
 form {
-  width: 300px;
-  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -82,11 +88,11 @@ button:hover {
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
-.afspraak-item {
+.afspraak-detail {
   display: flex;
-  justify-content: flex-start;
   margin-bottom: 8px;
 }
 
@@ -99,17 +105,33 @@ ul {
   margin-left: 8px;
 }
 
-@media (min-width: 500px) and (max-width: 768px) {
-  .results {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  input[type="text"] {
-    width: 70%;
+.add-notificatie-button {
+  width: 56px!important;
+  height: 56px!important;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: lightgreen;
+}
+
+.afspraken-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center items */
+  width: 100%;
+  gap: 20px; /* Add gap between items */
+  padding: 0!important;
+}
+
+@media (max-width: 768px) {
+  .afspraak-item {
+    flex: 0 1 calc(50% - 20px);
   }
 }
 
-@media (max-width: 499px) {
-  .results {
-    grid-template-columns: 1fr;
+@media (max-width: 500px) {
+  .afspraak-item {
+    flex: 0 1 calc(100% - 20px);
   }
 }

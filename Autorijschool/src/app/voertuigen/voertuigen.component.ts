@@ -57,31 +57,4 @@ export class VoertuigenComponent implements OnInit {
       this.voertuigen = this.voertuigService.getVoertuigen(); // Werk de lijst van voertuigen bij
     }
   }
-
-  openDialog(voertuig: Voertuigen = { id: 0, merk: '', soort: '', kenteken: '', fotoUrl: '', status: 'Beschikbaar' }): void {
-    const dialogRef = this.dialog.open(VoertuigDialogComponent, {
-      width: '400px',
-      data: voertuig
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        if (result.id === 0) {
-          result.id = this.voertuigen.length + 1;
-          this.voertuigService.addVoertuig(result);
-        } else {
-          this.voertuigService.updateVoertuig(result);
-        }
-        this.voertuigen = this.voertuigService.getVoertuigen();
-      }
-    });
-  }
-
-  voertuigVerwijderen(id: number): void {
-    const confirmation = confirm('Weet je zeker dat je dit voertuig wilt verwijderen?');
-    if (confirmation) {
-      this.voertuigService.deleteVoertuig(id);
-      this.voertuigen = this.voertuigService.getVoertuigen();
-    }
-  }
 }

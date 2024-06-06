@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationComponent } from "../navigation/navigation.component";
 import { CommonModule } from "@angular/common";
 import { VoertuigenComponent } from "../voertuigen/voertuigen.component";
@@ -6,11 +7,24 @@ import { RouterModule } from '@angular/router';
 import { Voertuigen } from "../voertuigen";
 import { VoertuigService } from "../voertuigen.service";
 import { FormsModule } from "@angular/forms";
+import { NotificatieDialogComponent, Notificatie } from '../notificatie-dialog/notificatie-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, VoertuigenComponent, RouterModule, FormsModule],
+  imports: [
+    CommonModule,
+    NavigationComponent,
+    VoertuigenComponent,
+    RouterModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -23,9 +37,10 @@ export class HomeComponent implements OnInit {
   beschikbareVoertuigen: Voertuigen[];
   gemaakteAfspraken: any[] = [];
   beschikbareTijden: string[] = [];
+  notificaties: Notificatie[] = [];
 
   // Constructor voor de HomeComponent
-  constructor(private voertuigService: VoertuigService) {
+  constructor(private voertuigService: VoertuigService, public dialog: MatDialog) {
     // Haal beschikbare voertuigen op via de service
     this.beschikbareVoertuigen = this.voertuigService.getVoertuigen();
   }
@@ -126,5 +141,28 @@ export class HomeComponent implements OnInit {
   verwijderAfspraak(index: number): void {
     this.gemaakteAfspraken.splice(index, 1);
     localStorage.setItem('afspraken', JSON.stringify(this.gemaakteAfspraken));
+  }
+
+  // Open een dialoog voor het bekijken en toevoegen van notificaties
+  openNotificatieDialog(notificatie: Notificatie = { id: 0, bericht: '' }): void {
+    const dialogRef = this.dialog.open(NotificatieDialogComponent, {
+      width: '400px',
+      data: notificatie
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.id === 0) {
+          result.id = this.notificaties.length + 1;
+          this.notificaties.push(result);
+        } else {
+          const index = this.notificaties.findIndex(n => n.id === result.id);
+          if (index !== -1) {
+            this.notificaties[index] = result;
+          }
+        }
+        // Eventueel notificaties opslaan (bijv. in local storage of via een service)
+      }
+    });
   }
 }

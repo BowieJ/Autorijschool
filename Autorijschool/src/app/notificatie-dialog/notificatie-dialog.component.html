@@ -1,0 +1,8 @@
+<h2>{{ notificatie.id ? 'Notificatie Bewerken' : 'Nieuwe Notificatie' }}</h2>
+<form (ngSubmit)="notificatieOpslaan()">
+  <div class="input">
+    <label for="bericht">Bericht:</label>
+    <textarea id="bericht" [(ngModel)]="notificatie.bericht" name="bericht" required></textarea>
+  </div>
+  <button type="submit">{{ notificatie.id ? 'Bijwerken' : 'Opslaan' }}</button>
+</form>
