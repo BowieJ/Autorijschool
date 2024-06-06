@@ -28,24 +28,37 @@ export class HomeComponent implements OnInit {
   beschikbareTijden: string[] = [];
   notificaties: { titel: string, tekst: string }[] = []; // Notificaties array
 
+  // Constructor voor de HomeComponent
   constructor(private voertuigService: VoertuigService, public dialog: MatDialog) {
+    // Haal beschikbare voertuigen op via de service
     this.beschikbareVoertuigen = this.voertuigService.getVoertuigen();
   }
 
+  // Lifecycle hook die wordt aangeroepen wanneer de component wordt geïnitialiseerd
   ngOnInit(): void {
+    // Haal opgeslagen afspraken op uit local storage
     const opgeslagenAfspraken = localStorage.getItem('afspraken');
     if (opgeslagenAfspraken) {
       this.gemaakteAfspraken = JSON.parse(opgeslagenAfspraken);
     }
+
+    // Haal opgeslagen notificaties op uit local storage
+    const opgeslagenNotificaties = localStorage.getItem('notificaties');
+    if (opgeslagenNotificaties) {
+      this.notificaties = JSON.parse(opgeslagenNotificaties);
+    }
+
     this.updateBeschikbareTijden(); // Initialiseer beschikbare tijden
   }
 
+  // Update de beschikbare tijden op basis van de geselecteerde datum
   updateBeschikbareTijden(): void {
     const now = new Date();
     const selectedDate = new Date(this.datum);
     this.beschikbareTijden = [];
 
     if (selectedDate.toDateString() === now.toDateString()) {
+      // Voor vandaag, toon alleen toekomstige uren
       const currentHour = now.getHours();
       for (let i = currentHour + 1; i <= 17; i++) {
         if (i >= 9 && i <= 17) {
@@ -53,16 +66,19 @@ export class HomeComponent implements OnInit {
         }
       }
     } else {
+      // Voor andere datums, toon alle werkuren
       for (let i = 9; i <= 17; i++) {
         this.beschikbareTijden.push(this.formatTime(i));
       }
     }
   }
 
+  // Formatteer de tijd in HH:00 formaat
   formatTime(hour: number): string {
     return hour.toString().padStart(2, '0') + ':00';
   }
 
+  // Valideer de geselecteerde datum
   validateDate(): boolean {
     const datum = new Date(this.datum);
     const vandaag = new Date();
@@ -82,6 +98,7 @@ export class HomeComponent implements OnInit {
     return true;
   }
 
+  // Valideer de geselecteerde datum en tijd
   validateDateTime(): boolean {
     if (!this.validateDate()) {
       return false;
@@ -97,6 +114,7 @@ export class HomeComponent implements OnInit {
     return true;
   }
 
+  // Maak een nieuwe afspraak
   maakAfspraak(event: Event): void {
     event.preventDefault();
     if (!this.validateDateTime()) {
@@ -115,12 +133,14 @@ export class HomeComponent implements OnInit {
     console.log("Nieuwe afspraak aangemaakt:", nieuweAfspraak);
   }
 
+  // Verwijder een bestaande afspraak
   verwijderAfspraak(index: number): void {
     this.gemaakteAfspraken.splice(index, 1);
     localStorage.setItem('afspraken', JSON.stringify(this.gemaakteAfspraken));
   }
 
-  openNotificatieDialog(notificatie: any = null, index: number | null = null): void {
+  // Open een dialoogvenster voor notificaties
+  openNotificatieDialog(notificatie?: { titel: string, tekst: string }, index?: number): void {
     const dialogRef = this.dialog.open(NotificatieDialogComponent, {
       width: '400px',
       data: notificatie ? { ...notificatie } : { titel: '', tekst: '' }
@@ -128,16 +148,19 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (index !== null) {
+        if (index !== undefined && index !== null) {
           this.notificaties[index] = result;
         } else {
           this.notificaties.push(result);
         }
+        localStorage.setItem('notificaties', JSON.stringify(this.notificaties));
       }
     });
   }
 
+  // Verwijder een notificatie
   verwijderNotificatie(index: number): void {
     this.notificaties.splice(index, 1);
+    localStorage.setItem('notificaties', JSON.stringify(this.notificaties));
   }
 }

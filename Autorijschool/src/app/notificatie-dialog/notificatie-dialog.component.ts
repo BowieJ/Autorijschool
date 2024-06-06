@@ -22,6 +22,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   `
 })
 export class NotificatieDialogComponent {
+
   constructor(
     public dialogRef: MatDialogRef<NotificatieDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { titel: string, tekst: string }
