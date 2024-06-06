@@ -1,38 +1,32 @@
-import {Component} from '@angular/core';
-import {VOERTUIG, Voertuigen} from "../voertuigen";
-import {NgForOf} from "@angular/common";
-import {RouterModule} from '@angular/router';
-import {VoertuigService} from "../voertuigen.service";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Voertuigen } from '../voertuigen';
+import { VoertuigService } from '../voertuigen.service';
+import { VoertuigDialogComponent } from '../voertuig-dialog/voertuig-dialog.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-voertuigen',
-    standalone: true,
-    imports: [
-        NgForOf,
-        RouterModule
-    ],
-    templateUrl: './voertuigen.component.html',
-    styleUrls: ['./voertuigen.component.scss']
+  selector: 'app-voertuigen',
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatIconModule],
+  templateUrl: './voertuigen.component.html',
+  styleUrls: ['./voertuigen.component.scss']
 })
-<<<<<<< Updated upstream
-export class VoertuigenComponent {
-  voertuigen!: Voertuigen[];
 
-  constructor(private voertuigService: VoertuigService) { }
-=======
 export class VoertuigenComponent implements OnInit {
   voertuigen: Voertuigen[] = []; // Array om de voertuigen in op te slaan
 
   // Constructor voor de VoertuigenComponent
   constructor(private voertuigService: VoertuigService, public dialog: MatDialog) { }
->>>>>>> Stashed changes
 
   // Lifecycle hook die wordt aangeroepen wanneer de component wordt geïnitialiseerd
   ngOnInit(): void {
     this.voertuigen = this.voertuigService.getVoertuigen(); // Haal de voertuigen op via de service
   }
-<<<<<<< Updated upstream
-=======
 
   // Open een dialoog voor het toevoegen of bewerken van een voertuig
   openDialog(voertuig: Voertuigen = { id: 0, merk: '', soort: '', kenteken: '', fotoUrl: '', status: 'Beschikbaar' }): void {
@@ -63,6 +57,31 @@ export class VoertuigenComponent implements OnInit {
       this.voertuigen = this.voertuigService.getVoertuigen(); // Werk de lijst van voertuigen bij
     }
   }
->>>>>>> Stashed changes
-}
 
+  openDialog(voertuig: Voertuigen = { id: 0, merk: '', soort: '', kenteken: '', fotoUrl: '', status: 'Beschikbaar' }): void {
+    const dialogRef = this.dialog.open(VoertuigDialogComponent, {
+      width: '400px',
+      data: voertuig
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.id === 0) {
+          result.id = this.voertuigen.length + 1;
+          this.voertuigService.addVoertuig(result);
+        } else {
+          this.voertuigService.updateVoertuig(result);
+        }
+        this.voertuigen = this.voertuigService.getVoertuigen();
+      }
+    });
+  }
+
+  voertuigVerwijderen(id: number): void {
+    const confirmation = confirm('Weet je zeker dat je dit voertuig wilt verwijderen?');
+    if (confirmation) {
+      this.voertuigService.deleteVoertuig(id);
+      this.voertuigen = this.voertuigService.getVoertuigen();
+    }
+  }
+}
