@@ -4,6 +4,70 @@
   position: relative;
 }
 
+.add-notificatie-button {
+  width: 56px !important;
+  height: 56px !important;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: lightgreen;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25%; /* aangepast van 20% naar 25% */
+  min-width: 200px;
+}
+
+.afspraak-form,
+.notificaties {
+  width: 100%; /* Zorgt ervoor dat het formulier en de notificaties 100% breedte hebben */
+}
+
+.afspraak-form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.notificaties {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-sizing: border-box; /* Zorgt ervoor dat de padding wordt meegerekend in de breedte */
+}
+
+.notificaties ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notificaties li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
 .input {
   width: 100%;
   padding: 8px;
@@ -11,6 +75,22 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
+}
+
+.afspraken-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.afspraken-lijst {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .afspraak-item {
@@ -23,51 +103,29 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
-  flex: 0 1 30%; /* Fixed width for better alignment */
+  position: relative;
+  flex: 0 1 calc(50% - 20px);
+  margin: 10px;
 }
 
-form {
+.afspraak-detail {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
+.afspraak-label {
+  font-weight: bold;
+  width: 100px;
 }
 
-a {
-  color: #007bff;
-  text-decoration: underline;
-  cursor: pointer;
+.afspraak-value {
+  margin-left: 8px;
+  flex: 1;
+  text-align: left;
 }
 
-.results {
-  display: grid;
-  column-gap: 14px;
-  row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-  margin-top: 50px;
-  justify-content: space-around;
-}
-
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-
-input[type="submit"],
 button {
-  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: none;
@@ -77,61 +135,59 @@ button {
   cursor: pointer;
 }
 
-button {
-  background-color: #28a745;
-}
-
-input[type="submit"]:hover,
 button:hover {
   background-color: #0056b3;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-.afspraak-detail {
+.verwijder-knop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4b4b;
+  color: white;
+  border: none;
+  padding: 0; /* Zet de padding op 0 */
+  border-radius: 50%;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
   display: flex;
-  margin-bottom: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
-.afspraak-label {
-  font-weight: bold;
-  width: 100px; /* Adjust the width as needed */
+.verwijder-knop:hover {
+  background-color: #ff0000;
 }
 
-.afspraak-value {
-  margin-left: 8px;
-}
-
-.add-notificatie-button {
-  width: 56px!important;
-  height: 56px!important;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: white;
-  color: lightgreen;
-}
-
-.afspraken-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center items */
-  width: 100%;
-  gap: 20px; /* Add gap between items */
-  padding: 0!important;
+#mededelingen{
+  border-bottom: 1px solid #ccc;
 }
 
 @media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    width: 100%;
+  }
+
+  .afspraken-lijst {
+    flex-direction: column;
+  }
+
   .afspraak-item {
-    flex: 0 1 calc(50% - 20px);
+    flex: 0 1 100%;
   }
 }
 
 @media (max-width: 500px) {
+  .left-panel {
+    width: 100%;
+  }
+
   .afspraak-item {
-    flex: 0 1 calc(100% - 20px);
+    flex: 0 1 100%;
   }
 }

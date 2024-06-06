@@ -1,30 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationComponent } from "../navigation/navigation.component";
-import { CommonModule } from "@angular/common";
-import { VoertuigenComponent } from "../voertuigen/voertuigen.component";
-import { RouterModule } from '@angular/router';
-import { Voertuigen } from "../voertuigen";
-import { VoertuigService } from "../voertuigen.service";
-import { FormsModule } from "@angular/forms";
-import { NotificatieDialogComponent, Notificatie } from '../notificatie-dialog/notificatie-dialog.component';
+import { Voertuigen } from '../voertuigen';
+import { VoertuigService } from '../voertuigen.service';
+import { VoertuigDialogComponent } from '../voertuig-dialog/voertuig-dialog.component';
+import { NotificatieDialogComponent } from '../notificatie-dialog/notificatie-dialog.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    CommonModule,
-    NavigationComponent,
-    VoertuigenComponent,
-    RouterModule,
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule
-  ],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -37,7 +26,7 @@ export class HomeComponent implements OnInit {
   beschikbareVoertuigen: Voertuigen[];
   gemaakteAfspraken: any[] = [];
   beschikbareTijden: string[] = [];
-  notificaties: Notificatie[] = [];
+  notificaties: { titel: string, tekst: string }[] = []; // Notificaties array
 
   // Constructor voor de HomeComponent
   constructor(private voertuigService: VoertuigService, public dialog: MatDialog) {
@@ -143,25 +132,15 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('afspraken', JSON.stringify(this.gemaakteAfspraken));
   }
 
-  // Open een dialoog voor het bekijken en toevoegen van notificaties
-  openNotificatieDialog(notificatie: Notificatie = { id: 0, bericht: '' }): void {
+  // Open een dialoogvenster voor notificaties
+  openNotificatieDialog(): void {
     const dialogRef = this.dialog.open(NotificatieDialogComponent, {
-      width: '400px',
-      data: notificatie
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (result.id === 0) {
-          result.id = this.notificaties.length + 1;
-          this.notificaties.push(result);
-        } else {
-          const index = this.notificaties.findIndex(n => n.id === result.id);
-          if (index !== -1) {
-            this.notificaties[index] = result;
-          }
-        }
-        // Eventueel notificaties opslaan (bijv. in local storage of via een service)
+        this.notificaties.push(result);
       }
     });
   }

@@ -1,12 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-export interface Notificatie {
-  id: number;
-  bericht: string;
-}
 
 @Component({
   selector: 'app-notificatie-dialog',
@@ -16,16 +11,12 @@ export interface Notificatie {
   styleUrls: ['./notificatie-dialog.component.scss']
 })
 export class NotificatieDialogComponent {
-  notificatie: Notificatie;
+  titel: string = '';
+  tekst: string = '';
 
-  constructor(
-    public dialogRef: MatDialogRef<NotificatieDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Notificatie
-  ) {
-    this.notificatie = { ...data }; // Maak een kopie van de data om te bewerken
-  }
+  constructor(public dialogRef: MatDialogRef<NotificatieDialogComponent>) {}
 
   notificatieOpslaan(): void {
-    this.dialogRef.close(this.notificatie); // Sluit de dialoog en geef de gewijzigde notificatie terug
+    this.dialogRef.close({ titel: this.titel, tekst: this.tekst });
   }
 }
