@@ -31,13 +31,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 25%; /* aangepast van 20% naar 25% */
+  width: 25%;
   min-width: 200px;
 }
 
 .afspraak-form,
 .notificaties {
-  width: 100%; /* Zorgt ervoor dat het formulier en de notificaties 100% breedte hebben */
+  width: 100%;
 }
 
 .afspraak-form {
@@ -54,7 +54,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  box-sizing: border-box; /* Zorgt ervoor dat de padding wordt meegerekend in de breedte */
+  box-sizing: border-box;
 }
 
 .notificaties ul {
@@ -63,9 +63,45 @@
   margin: 0;
 }
 
-.notificaties li {
-  padding: 5px 0;
-  border-bottom: 1px solid #ccc;
+.notificatie-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.notificatie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.notificatie-header h4 {
+  margin: 0;
+}
+
+.notificatie-knoppen {
+  display: flex;
+  align-items: center;
+}
+
+.bewerk-notificatie-knop, .verwijder-notificatie-knop {
+  background-color: transparent;
+  color: #808080;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+.bewerk-notificatie-knop:hover, .verwijder-notificatie-knop:hover {
+  background-color: lightgray;
 }
 
 .input {
@@ -146,7 +182,7 @@ button:hover {
   background-color: #ff4b4b;
   color: white;
   border: none;
-  padding: 0; /* Zet de padding op 0 */
+  padding: 0;
   border-radius: 50%;
   cursor: pointer;
   width: 24px;
@@ -160,7 +196,7 @@ button:hover {
   background-color: #ff0000;
 }
 
-#mededelingen{
+.mededelingen {
   border-bottom: 1px solid #ccc;
 }
 

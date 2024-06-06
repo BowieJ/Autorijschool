@@ -18,11 +18,23 @@
           <button type="submit">Afspraak maken</button>
         </form>
         <div class="notificaties">
-          <h3 id="mededelingen">Mededelingen</h3>
+          <h3 class="mededelingen">Mededelingen</h3>
           <ul>
-            <li *ngFor="let notificatie of notificaties">
-              <h4><b>{{ notificatie.titel }}</b></h4>
-              <p>{{ notificatie.tekst }}</p>
+            <li *ngFor="let notificatie of notificaties; let i = index" class="mededelingen">
+              <div class="notificatie-item">
+                <div class="notificatie-header">
+                  <h4><b>{{ notificatie.titel }}</b></h4>
+                  <div class="notificatie-knoppen">
+                    <button class="bewerk-notificatie-knop" (click)="openNotificatieDialog(notificatie, i)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="verwijder-notificatie-knop" (click)="verwijderNotificatie(i)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <p>{{ notificatie.tekst }}</p>
+              </div>
             </li>
           </ul>
         </div>

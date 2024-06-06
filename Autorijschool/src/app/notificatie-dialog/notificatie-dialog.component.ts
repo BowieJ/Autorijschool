@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notificatie-dialog',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './notificatie-dialog.component.html',
-  styleUrls: ['./notificatie-dialog.component.scss']
+  template: `
+    <h1 mat-dialog-title>Notificatie</h1>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Titel</mat-label>
+        <input matInput [(ngModel)]="data.titel">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tekst</mat-label>
+        <textarea matInput [(ngModel)]="data.tekst"></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Annuleren</button>
+      <button mat-button (click)="onSave()">Opslaan</button>
+    </div>
+  `
 })
 export class NotificatieDialogComponent {
-  titel: string = '';
-  tekst: string = '';
+  constructor(
+    public dialogRef: MatDialogRef<NotificatieDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { titel: string, tekst: string }
+  ) {}
 
-  constructor(public dialogRef: MatDialogRef<NotificatieDialogComponent>) {}
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 
-  notificatieOpslaan(): void {
-    this.dialogRef.close({ titel: this.titel, tekst: this.tekst });
+  onSave(): void {
+    this.dialogRef.close(this.data);
   }
 }
