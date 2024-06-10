@@ -1,8 +1,15 @@
-<h2>{{ notificatie.id ? 'Notificatie Bewerken' : 'Nieuwe Notificatie' }}</h2>
-<form (ngSubmit)="notificatieOpslaan()">
-  <div class="input">
-    <label for="bericht">Bericht:</label>
-    <textarea id="bericht" [(ngModel)]="notificatie.bericht" name="bericht" required></textarea>
-  </div>
-  <button type="submit">{{ notificatie.id ? 'Bijwerken' : 'Opslaan' }}</button>
-</form>
+<h1 mat-dialog-title>Notificatie</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Titel</mat-label>
+    <input matInput [(ngModel)]="data.titel">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tekst</mat-label>
+    <textarea matInput [(ngModel)]="data.tekst"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuleren</button>
+  <button mat-button [mat-dialog-close]="data">Opslaan</button>
+</div>
