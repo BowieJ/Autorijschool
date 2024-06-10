@@ -11,6 +11,10 @@ export class VoertuigService {
     return this.voertuigen;
   }
 
+  getBeschikbareVoertuigen(): Voertuigen[] {
+    return this.voertuigen.filter(v => v.status === 'Beschikbaar');
+  }
+
   addVoertuig(voertuig: Voertuigen): void {
     this.voertuigen.push(voertuig);
   }

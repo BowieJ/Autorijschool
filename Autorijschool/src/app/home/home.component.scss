@@ -27,26 +27,14 @@
   width: 100%;
 }
 
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 25%;
-  min-width: 200px;
-}
-
-.afspraak-form,
-.notificaties {
-  width: 100%;
-}
-
 .afspraak-form {
-  margin-top: 10px;
+  width: 100%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .notificaties {
@@ -55,7 +43,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Zorgt ervoor dat de padding wordt meegerekend in de breedte */
+  width: 25%; /* Stelt de breedte van het notificatiegedeelte in */
 }
 
 .notificaties ul {
@@ -64,10 +53,18 @@
   margin: 0;
 }
 
+.notificaties li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .notificatie-item {
   display: flex;
   flex-direction: column;
-  position: relative;
+  width: 100%;
 }
 
 .notificatie-header {
@@ -77,32 +74,9 @@
   width: 100%;
 }
 
-.notificatie-header h4 {
-  margin: 0;
-}
-
 .notificatie-knoppen {
   display: flex;
   align-items: center;
-}
-
-.bewerk-notificatie-knop, .verwijder-notificatie-knop {
-  background-color: transparent;
-  color: #808080;
-  border: none;
-  padding: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
-}
-
-.bewerk-notificatie-knop:hover, .verwijder-notificatie-knop:hover {
-  background-color: lightgray;
 }
 
 .input {
@@ -119,6 +93,7 @@
   flex-direction: column;
   flex: 1;
   margin-left: 20px;
+  width: 75%; /* Stelt de breedte van het afspraken container in */
 }
 
 .afspraken-lijst {
@@ -176,14 +151,14 @@ button:hover {
   background-color: #0056b3;
 }
 
-.verwijder-knop {
+.verwijder-knop, .voltooi-knop {
   position: absolute;
   top: 10px;
   right: 10px;
   background-color: #ff4b4b;
   color: white;
   border: none;
-  padding: 0;
+  padding: 0; /* Zet de padding op 0 */
   border-radius: 50%;
   cursor: pointer;
   width: 24px;
@@ -193,12 +168,17 @@ button:hover {
   justify-content: center;
 }
 
+.voltooi-knop {
+  background-color: #4CAF50;
+  right: 40px;
+}
+
 .verwijder-knop:hover {
   background-color: #ff0000;
 }
 
-.mededelingen {
-  border-bottom: 1px solid #ccc;
+.voltooi-knop:hover {
+  background-color: #45a049;
 }
 
 @media (max-width: 768px) {
@@ -206,7 +186,12 @@ button:hover {
     flex-direction: column;
   }
 
-  .left-panel {
+  .afspraak-form,
+  .notificaties {
+    width: 100%;
+  }
+
+  .afspraken-container {
     width: 100%;
   }
 
@@ -220,10 +205,6 @@ button:hover {
 }
 
 @media (max-width: 500px) {
-  .left-panel {
-    width: 100%;
-  }
-
   .afspraak-item {
     flex: 0 1 100%;
   }

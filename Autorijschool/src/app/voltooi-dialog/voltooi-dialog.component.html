@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Afspraak Voltooien</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Feedback</mat-label>
+    <textarea matInput [(ngModel)]="data.feedback"></textarea>
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="data.voltooid">Voltooid</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuleren</button>
+  <button mat-button [mat-dialog-close]="data">Opslaan</button>
+</div>

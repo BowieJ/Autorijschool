@@ -7,18 +7,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-notificatie-dialog',
+  selector: 'app-voltooi-dialog',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './notificatie-dialog.component.html',
-  styleUrls: ['./notificatie-dialog.component.scss']
+  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatCheckboxModule],
+  templateUrl: './voltooi-dialog.component.html',
+  styleUrls: ['./voltooi-dialog.component.scss']
 })
-export class NotificatieDialogComponent {
+export class VoltooiDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<NotificatieDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { titel: string, tekst: string }
+    public dialogRef: MatDialogRef<VoltooiDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { feedback: string, voltooid: boolean }
   ) {}
 
   onNoClick(): void {

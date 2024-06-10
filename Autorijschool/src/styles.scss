@@ -102,3 +102,6 @@ button:hover {
     justify-content: center; /* Center items for smallest screens */
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

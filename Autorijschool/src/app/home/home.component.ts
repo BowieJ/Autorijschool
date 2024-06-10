@@ -2,18 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Voertuigen } from '../voertuigen';
 import { VoertuigService } from '../voertuigen.service';
-import { VoertuigDialogComponent } from '../voertuig-dialog/voertuig-dialog.component';
 import { NotificatieDialogComponent } from '../notificatie-dialog/notificatie-dialog.component';
+import { VoltooiDialogComponent } from '../voltooi-dialog/voltooi-dialog.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule, MatDialogModule, MatIconModule],
+  standalone: true,  // Dit moet true zijn voor standalone componenten
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -26,39 +36,35 @@ export class HomeComponent implements OnInit {
   beschikbareVoertuigen: Voertuigen[];
   gemaakteAfspraken: any[] = [];
   beschikbareTijden: string[] = [];
-  notificaties: { titel: string, tekst: string }[] = []; // Notificaties array
+  notificaties: { titel: string, tekst: string }[] = [];
+  instructeurs: string[] = ['Instructeur 1', 'Instructeur 2', 'Instructeur 3'];
+  ophaallocatie!: string;
+  doelLes!: string;
 
-  // Constructor voor de HomeComponent
   constructor(private voertuigService: VoertuigService, public dialog: MatDialog) {
-    // Haal beschikbare voertuigen op via de service
-    this.beschikbareVoertuigen = this.voertuigService.getVoertuigen();
+    this.beschikbareVoertuigen = this.voertuigService.getBeschikbareVoertuigen(); // Haal alleen beschikbare voertuigen op
   }
 
-  // Lifecycle hook die wordt aangeroepen wanneer de component wordt geïnitialiseerd
   ngOnInit(): void {
-    // Haal opgeslagen afspraken op uit local storage
     const opgeslagenAfspraken = localStorage.getItem('afspraken');
     if (opgeslagenAfspraken) {
       this.gemaakteAfspraken = JSON.parse(opgeslagenAfspraken);
     }
 
-    // Haal opgeslagen notificaties op uit local storage
     const opgeslagenNotificaties = localStorage.getItem('notificaties');
     if (opgeslagenNotificaties) {
       this.notificaties = JSON.parse(opgeslagenNotificaties);
     }
 
-    this.updateBeschikbareTijden(); // Initialiseer beschikbare tijden
+    this.updateBeschikbareTijden();
   }
 
-  // Update de beschikbare tijden op basis van de geselecteerde datum
   updateBeschikbareTijden(): void {
     const now = new Date();
     const selectedDate = new Date(this.datum);
     this.beschikbareTijden = [];
 
     if (selectedDate.toDateString() === now.toDateString()) {
-      // Voor vandaag, toon alleen toekomstige uren
       const currentHour = now.getHours();
       for (let i = currentHour + 1; i <= 17; i++) {
         if (i >= 9 && i <= 17) {
@@ -66,19 +72,16 @@ export class HomeComponent implements OnInit {
         }
       }
     } else {
-      // Voor andere datums, toon alle werkuren
       for (let i = 9; i <= 17; i++) {
         this.beschikbareTijden.push(this.formatTime(i));
       }
     }
   }
 
-  // Formatteer de tijd in HH:00 formaat
   formatTime(hour: number): string {
     return hour.toString().padStart(2, '0') + ':00';
   }
 
-  // Valideer de geselecteerde datum
   validateDate(): boolean {
     const datum = new Date(this.datum);
     const vandaag = new Date();
@@ -98,7 +101,6 @@ export class HomeComponent implements OnInit {
     return true;
   }
 
-  // Valideer de geselecteerde datum en tijd
   validateDateTime(): boolean {
     if (!this.validateDate()) {
       return false;
@@ -114,7 +116,6 @@ export class HomeComponent implements OnInit {
     return true;
   }
 
-  // Maak een nieuwe afspraak
   maakAfspraak(event: Event): void {
     event.preventDefault();
     if (!this.validateDateTime()) {
@@ -125,7 +126,11 @@ export class HomeComponent implements OnInit {
       naam: this.naam,
       telefoon: this.telefoon,
       datumTijd: new Date(`${this.datum}T${this.tijd}`),
-      voertuig: this.gekozenVoertuig
+      voertuig: this.gekozenVoertuig,
+      ophaallocatie: this.ophaallocatie,
+      doelLes: this.doelLes,
+      instructeur: this.instructeurs,
+      voltooid: false
     };
 
     this.gemaakteAfspraken.push(nieuweAfspraak);
@@ -133,14 +138,27 @@ export class HomeComponent implements OnInit {
     console.log("Nieuwe afspraak aangemaakt:", nieuweAfspraak);
   }
 
-  // Verwijder een bestaande afspraak
   verwijderAfspraak(index: number): void {
     this.gemaakteAfspraken.splice(index, 1);
     localStorage.setItem('afspraken', JSON.stringify(this.gemaakteAfspraken));
   }
 
-  // Open een dialoogvenster voor notificaties
-  openNotificatieDialog(notificatie?: { titel: string, tekst: string }, index?: number): void {
+  markeerAlsVoltooid(index: number): void {
+    const dialogRef = this.dialog.open(VoltooiDialogComponent, {
+      width: '400px',
+      data: { feedback: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.gemaakteAfspraken[index].voltooid = true;
+        this.gemaakteAfspraken[index].feedback = result.feedback;
+        localStorage.setItem('afspraken', JSON.stringify(this.gemaakteAfspraken));
+      }
+    });
+  }
+
+  openNotificatieDialog(notificatie?: any, index?: number): void {
     const dialogRef = this.dialog.open(NotificatieDialogComponent, {
       width: '400px',
       data: notificatie ? { ...notificatie } : { titel: '', tekst: '' }
@@ -148,7 +166,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (index !== undefined && index !== null) {
+        if (index !== undefined) {
           this.notificaties[index] = result;
         } else {
           this.notificaties.push(result);
@@ -158,7 +176,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Verwijder een notificatie
   verwijderNotificatie(index: number): void {
     this.notificaties.splice(index, 1);
     localStorage.setItem('notificaties', JSON.stringify(this.notificaties));
