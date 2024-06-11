@@ -22,7 +22,7 @@
               <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.soort }} - {{ voertuig.kenteken }}</option>
             </select>
             <input type="text" placeholder="Ophaallocatie" [(ngModel)]="ophaallocatie" name="ophaallocatie" required>
-            <input type="text" placeholder="Doel van de les" [(ngModel)]="doelLes" name="doelLes" required>
+            <input type="text" placeholder="Lesdoel" [(ngModel)]="doelLes" name="doelLes" required>
             <select class="input" [(ngModel)]="instructeurs" name="instructeur" required>
               <option *ngFor="let instructeur of instructeurs" [value]="instructeur">{{ instructeur }}</option>
             </select>
@@ -53,7 +53,7 @@
                 <div class="afspraak-value">{{ afspraak.ophaallocatie }}</div>
               </div>
               <div class="afspraak-detail">
-                <div class="afspraak-label">Doel van de les:</div>
+                <div class="afspraak-label">Lesdoel:</div>
                 <div class="afspraak-value">{{ afspraak.doelLes }}</div>
               </div>
               <div class="afspraak-detail">
