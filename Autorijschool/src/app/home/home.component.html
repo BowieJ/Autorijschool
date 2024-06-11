@@ -4,67 +4,76 @@
       <mat-icon>notifications</mat-icon>
     </button>
     <div class="content">
-      <div class="afspraken-container">
-        <form class="afspraak-form" (submit)="maakAfspraak($event)">
-          <input type="text" placeholder="Naam" [(ngModel)]="naam" name="naam" required>
-          <input type="text" placeholder="Telefoon" [(ngModel)]="telefoon" name="telefoon" required>
-          <input class="input" type="date" placeholder="Datum" [(ngModel)]="datum" name="datum" id="datum" required (change)="updateBeschikbareTijden()">
-          <select class="input" [(ngModel)]="tijd" name="tijd" id="tijd" required>
-            <option *ngFor="let tijd of beschikbareTijden" [value]="tijd">{{ tijd }}</option>
-          </select>
-          <select class="input" [(ngModel)]="gekozenVoertuig" name="gekozenVoertuig" required>
-            <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.soort }} - {{ voertuig.kenteken }}</option>
-          </select>
-          <input type="text" placeholder="Ophaallocatie" [(ngModel)]="ophaallocatie" name="ophaallocatie" required>
-          <input type="text" placeholder="Doel van de les" [(ngModel)]="doelLes" name="doelLes" required>
-          <select class="input" [(ngModel)]="instructeurs" name="instructeur" required>
-            <option *ngFor="let instructeur of instructeurs" [value]="instructeur">{{ instructeur }}</option>
-          </select>
-          <button type="submit">Afspraak maken</button>
-        </form>
-        <ul id="afspraken-lijst" class="afspraken-lijst">
-          <li class="afspraak-item" *ngFor="let afspraak of gemaakteAfspraken; index as i">
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Naam:</div>
-              <div class="afspraak-value">{{ afspraak.naam }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Telefoon:</div>
-              <div class="afspraak-value">{{ afspraak.telefoon }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Datum/tijd:</div>
-              <div class="afspraak-value">{{ afspraak.datumTijd | date:'dd/MM/yy, HH:mm' }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Voertuig:</div>
-              <div class="afspraak-value">{{ afspraak.voertuig.soort }} - {{ afspraak.voertuig.kenteken }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Ophaallocatie:</div>
-              <div class="afspraak-value">{{ afspraak.ophaallocatie }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Doel van de les:</div>
-              <div class="afspraak-value">{{ afspraak.doelLes }}</div>
-            </div>
-            <div class="afspraak-detail">
-              <div class="afspraak-label">Instructeur:</div>
-              <div class="afspraak-value">{{ afspraak.instructeur }}</div>
-            </div>
-            <button class="voltooi-knop" (click)="markeerAlsVoltooid(i)">
-              <mat-icon>check</mat-icon>
-            </button>
-            <button class="verwijder-knop" (click)="verwijderAfspraak(i)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </li>
-        </ul>
+      <div class="sidebar">
+        <div class="informatie-container">
+          <app-informatie></app-informatie>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="afspraken-container">
+          <form class="afspraak-form" (submit)="maakAfspraak($event)">
+            <input type="text" placeholder="Naam" [(ngModel)]="naam" name="naam" required>
+            <input type="text" placeholder="Telefoon" [(ngModel)]="telefoon" name="telefoon" required>
+            <input class="input" type="date" placeholder="Datum" [(ngModel)]="datum" name="datum" id="datum" required (change)="updateBeschikbareTijden()">
+            <select class="input" [(ngModel)]="tijd" name="tijd" id="tijd" required>
+              <option *ngFor="let tijd of beschikbareTijden" [value]="tijd">{{ tijd }}</option>
+            </select>
+            <select class="input" [(ngModel)]="gekozenVoertuig" name="gekozenVoertuig" required>
+              <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.soort }} - {{ voertuig.kenteken }}</option>
+            </select>
+            <input type="text" placeholder="Ophaallocatie" [(ngModel)]="ophaallocatie" name="ophaallocatie" required>
+            <input type="text" placeholder="Doel van de les" [(ngModel)]="doelLes" name="doelLes" required>
+            <select class="input" [(ngModel)]="instructeurs" name="instructeur" required>
+              <option *ngFor="let instructeur of instructeurs" [value]="instructeur">{{ instructeur }}</option>
+            </select>
+            <button type="submit">Afspraak maken</button>
+          </form>
+        </div>
+        <div class="afspraken-lijst-container">
+          <ul id="afspraken-lijst" class="afspraken-lijst">
+            <li class="afspraak-item" *ngFor="let afspraak of gemaakteAfspraken; index as i">
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Naam:</div>
+                <div class="afspraak-value">{{ afspraak.naam }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Telefoon:</div>
+                <div class="afspraak-value">{{ afspraak.telefoon }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Datum/tijd:</div>
+                <div class="afspraak-value">{{ afspraak.datumTijd | date:'dd/MM/yy, HH:mm' }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Voertuig:</div>
+                <div class="afspraak-value">{{ afspraak.voertuig.soort }} - {{ afspraak.voertuig.kenteken }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Ophaallocatie:</div>
+                <div class="afspraak-value">{{ afspraak.ophaallocatie }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Doel van de les:</div>
+                <div class="afspraak-value">{{ afspraak.doelLes }}</div>
+              </div>
+              <div class="afspraak-detail">
+                <div class="afspraak-label">Instructeur:</div>
+                <div class="afspraak-value">{{ afspraak.instructeur }}</div>
+              </div>
+              <button class="voltooi-knop" (click)="markeerAlsVoltooid(i)">
+                <mat-icon>check</mat-icon>
+              </button>
+              <button class="verwijder-knop" (click)="verwijderAfspraak(i)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="notificaties">
-        <h3 class="mededelingen">Mededelingen</h3>
+        <h2 class="mededelingen">Mededelingen</h2>
         <ul>
-          <li *ngFor="let notificatie of notificaties; let i = index" class="mededelingen">
+          <li *ngFor="let notificatie of notificaties; let i = index">
             <div class="notificatie-item">
               <div class="notificatie-header">
                 <h4><b>{{ notificatie.titel }}</b></h4>
