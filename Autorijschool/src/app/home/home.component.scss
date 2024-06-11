@@ -34,13 +34,12 @@
 }
 
 .informatie-container {
-  margin-bottom: 20px;
   padding: 20px;
-  padding-top: 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .main-content {
@@ -60,8 +59,9 @@
 
 .afspraken-lijst-container {
   padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #81BAF7;
+  background-color: #fff;
   box-sizing: border-box;
 }
 
@@ -81,7 +81,7 @@
   margin: 0;
 }
 
-.notificaties li{
+.notificaties li, .afspraken-lijst li {
   padding: 10px;
   display: flex;
   align-items: center;
@@ -89,16 +89,7 @@
   background-color: #f9f9f9;
   border-radius: 5px;
   margin-bottom: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.afspraken-lijst li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .notificatie-item {
@@ -158,7 +149,12 @@
   align-items: flex-start;
   margin-bottom: 20px;
   position: relative;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.afspraak-item.voltooid {
+  background-color: #e0ffe0;
+  border-color: #00cc00;
 }
 
 .afspraak-detail {
@@ -176,6 +172,13 @@
   margin-left: 8px;
   flex: 1;
   text-align: left;
+}
+
+.afspraak-feedback {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
+  width: 100%;
 }
 
 button {
@@ -220,10 +223,6 @@ button:hover {
 
 .voltooi-knop:hover {
   background-color: #45a049;
-}
-
-.mededelingen{
-  font-size: 28px;
 }
 
 @media (max-width: 768px) {

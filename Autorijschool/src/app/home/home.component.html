@@ -22,7 +22,7 @@
               <option *ngFor="let voertuig of beschikbareVoertuigen" [ngValue]="voertuig">{{ voertuig.merk }} - {{ voertuig.soort }} - {{ voertuig.kenteken }}</option>
             </select>
             <input type="text" placeholder="Ophaallocatie" [(ngModel)]="ophaallocatie" name="ophaallocatie" required>
-            <input type="text" placeholder="Lesdoel" [(ngModel)]="doelLes" name="doelLes" required>
+            <input type="text" placeholder="Doel van de les" [(ngModel)]="doelLes" name="doelLes" required>
             <select class="input" [(ngModel)]="instructeurs" name="instructeur" required>
               <option *ngFor="let instructeur of instructeurs" [value]="instructeur">{{ instructeur }}</option>
             </select>
@@ -31,7 +31,7 @@
         </div>
         <div class="afspraken-lijst-container">
           <ul id="afspraken-lijst" class="afspraken-lijst">
-            <li class="afspraak-item" *ngFor="let afspraak of gemaakteAfspraken; index as i">
+            <li class="afspraak-item" *ngFor="let afspraak of gemaakteAfspraken; index as i" [ngClass]="{'voltooid': afspraak.voltooid}">
               <div class="afspraak-detail">
                 <div class="afspraak-label">Naam:</div>
                 <div class="afspraak-value">{{ afspraak.naam }}</div>
@@ -53,14 +53,17 @@
                 <div class="afspraak-value">{{ afspraak.ophaallocatie }}</div>
               </div>
               <div class="afspraak-detail">
-                <div class="afspraak-label">Lesdoel:</div>
+                <div class="afspraak-label">Doel van de les:</div>
                 <div class="afspraak-value">{{ afspraak.doelLes }}</div>
               </div>
               <div class="afspraak-detail">
                 <div class="afspraak-label">Instructeur:</div>
                 <div class="afspraak-value">{{ afspraak.instructeur }}</div>
               </div>
-              <button class="voltooi-knop" (click)="markeerAlsVoltooid(i)">
+              <div *ngIf="afspraak.feedback" class="afspraak-feedback">
+                <b>Feedback:</b> {{ afspraak.feedback }}
+              </div>
+              <button class="voltooi-knop" (click)="openVoltooiDialog(i)">
                 <mat-icon>check</mat-icon>
               </button>
               <button class="verwijder-knop" (click)="verwijderAfspraak(i)">
@@ -71,9 +74,9 @@
         </div>
       </div>
       <div class="notificaties">
-        <h2 class="mededelingen">Mededelingen</h2>
+        <h3 class="mededelingen">Mededelingen</h3>
         <ul>
-          <li *ngFor="let notificatie of notificaties; let i = index">
+          <li *ngFor="let notificatie of notificaties; let i = index" class="mededelingen">
             <div class="notificatie-item">
               <div class="notificatie-header">
                 <h4><b>{{ notificatie.titel }}</b></h4>
